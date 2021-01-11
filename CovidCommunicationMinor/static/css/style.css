@@ -1,0 +1,16 @@
+body{
+ margin:0;
+ padding: 0;
+
+}
+
+
+#particles-js{
+  width: 100%;
+  height: 100%;
+  background-color: #b61924;
+  background-image: url('https://c.files.bbci.co.uk/14A35/production/_115033548_gettyimages-1226314512.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
