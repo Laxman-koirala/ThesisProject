@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -11,12 +12,15 @@ def Signup(request):
         if request.method == 'POST':
             fm = UserCreationForm(request.POST)
             if fm.is_valid():
+                username = fm.cleaned_data.get('username')
+                messages.success(
+                    request, f'Account created Successfully for {username}.')
                 fm.save()
         else:
             fm = UserCreationForm()
         return render(request, 'Signup.html', {'form': fm})
     else:
-        return HttpResponseRedirect('/Base/')
+        return HttpResponseRedirect('/postlist/')
 
 
 
@@ -32,12 +36,12 @@ def Login(request):
                 user = authenticate(username=name, password=pw)
                 if user is not None:
                     login(request, user)
-                    return HttpResponseRedirect('/Base/')
+                    return HttpResponseRedirect('/postlist/')
         else:
             fm = AuthenticationForm()
         return render(request, 'Login.html', {'form': fm})
     else:
-        return HttpResponseRedirect('/Base/')
+        return HttpResponseRedirect('/postlist/')
 # Logout
 @login_required
 def Logout(request):
@@ -51,11 +55,8 @@ def Change_Password(request):
         fm = PasswordChangeForm(user=request.user, data=request.POST)
         if fm.is_valid():
             fm.save()
-            return HttpResponseRedirect('/Base/')
+            return HttpResponseRedirect('/postlist/')
     else:
         fm = PasswordChangeForm(user=request.user)
-    return render(request, 'password-change.html', {'form': fm})
+    return render(request, 'Base.html', {'form': fm})
 
-@login_required
-def Base(request):
-    return render(request, 'Base.html')

@@ -1,0 +1,56 @@
+
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+<div class="fixed-header">
+
+        <nav  style='background-color:#ffb3bb; border-radius:100px; height:50px; text-align:center'>
+  <div class="container-fluid">
+  <h1 style="font-family: 'Monoton', cursive;>TOTAL INFECTED: {{totalcase}}</h1>
+    <a class="navbar-brand" href="#" style="font-family: 'Monoton', cursive; height:40px;">
+      TOTAL INFECTED: {{totalcase}}
+    </a>
+  </div>
+</nav>
+
+
+  </div>
+  <br><br>
+  <div class='row'>
+    <div class="col-lg-3" style="float: left;  max-height: 650px;max-width:400px;overflow: scroll; overflow-x:hidden;">
+
+                <div class="col-lg-12" style="float: left;">
+                  <form method="post" enctype="multipart/form-data" action="">
+                    {% csrf_token %}
+
+                    <div class="col-lg-4" style="float: left;">
+                        {% for con in Name %}
+                        <table style="border-width: 2px; border: #333;">
+                        <tr>
+                            <input class="btn btn-warning" type="submit" value={{con}} name="country" style="width:100px;">
+                        </tr>
+                    </table>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-8" style="float: left;">
+                        <canvas id="myChart" style="height: 7850px; width: 173px; background-color:#1A5276; "></canvas>
+                    </div>
+                  </form>
+
+
+
+                </div>
+    </div>
+
+
+    <div class="col-lg-9" style='background-color:#ccfff2;'>
+    <h2 style="text-align:center">{{countryName}}</h2>
+    <canvas id="lineChart" style="display: block; height: 431px; width: 763px;" width="809" height="404" class="chartjs-render-monitor"></canvas>
+
+
+    </div>
+    </div>
+
+
+
+{% endblock %}

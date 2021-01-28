@@ -1,81 +1,106 @@
-<!DOCTYPE html>
+
+<!doctype html>
 {% load static %}
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>particles.js</title>
-  <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-.banner .nav{
-	margin-right:10%;
-}
-.banner .nav li a{
-	color:  #ffe6e6;
-	font-size: 2.2em;
-}
-.banner .info{
-	margin-top:15%;
-	transform: translateY(-15%);
-}
-.banner .info h1{
-	font-size: 2.5em;
-	font-weight: 700;
-	color: #fff;
-	letter-spacing: 2px;
-}
-.banner .info {
-	font-size: 2.2em;
-	font-weight: 500;
-	color: 	 #ffe6e6;
-	letter-spacing: 2px;
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <title>YouThink</title>
+    <style >
+    	*{
+    		padding: 0;
+    		margin: 0;
+    		box-sizing: border-box;
+    	}
+
+    	body{
+    		background: rgb(219,226,226);
+    	}
+
+    	.row{
+    		background: white;
+    		border-radius: 30px;
+
+    	}
+    	img{
+    		border-top-left-radius: 30px;
+    		border-bottom-left-radius: 30px;
+    		border-top-right-radius: 30px;
+    		border-bottom-right-radius: 30px;
+
+
+    	}
+    	.btn1{
+    		border : none;
+    		outline: none;
+    		height: 50px;
+    		width: 100%;
+    		background-color:Tomato ;
+    		color: white;
+    		border-radius: 4px;
+    		font-weight: bold;
+    	}
+    	.btn1:hover{
+    		background: white;
+    		border :1px solid;
+    		color: black;
+    	}
     </style>
-</head>
-<body>
 
-<div class="container-fluid banner" style="position:absolute">
-		<div class="row">
-			<div class="col-md-12">
-				<nav class="navbar navbar-md">
-					<div class="navbar-brand">
-                      <img  style="background-color:" src="{% static 'images/Logo.png' %}" width="280" height="80" class="d-inline-block align-top">
-                    </div>
-					<ul class="nav">
+    <link rel="shortcut icon" type="image/jpg" href="https://childrenandyouthplanningtable.ca/wp-content/uploads/2020/01/CYPT-Web-Banner-1-1200x365.png"/>
+  </head>
+  <body>
 
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-						</li>
+  <section class = 'Form my-4 mx-5'>
 
-					</ul>
-				</nav>
-			</div>
-			<div style="color:  #ffe6e6;
-	font-size:18px;"class="col-md-8 offset-md-2 info">
-				<form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="alert alert-success" type="submit" name="" value="Signup">
+  	<div class = 'container'>
+  		<div class = "row no-gutters">
+  			<div class = "col-lg-5">
+  				<img src="{% static 'images/HomeLogo.png' %}" class = "img-fluid" alt ="Thinking image">
+
+  				<hr>
+  			</div>
+  			<div class = "col-lg-7 px-5 pt-5">
+  				<h1 class = 'font-weight-bold py-3'>LOG IN</h1>
+  				<form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% for fm in form %}
+  					<div class ="form-row">
+  						<div class ="col-lg-7">
+            {{fm.label_tag}} {{fm}}  {{fm.errors|striptags}} <br><br>
+  						</div>
+  					</div>
+            {% endfor %}
+  					<div class ="form-row">
+  						<div class ="col-lg-7">
+  						<input  class="btn1" type="submit" name="" value="Let's Go">
+  						</div>
+  					</div>
+  					<hr> <hr> <hr>
+  					<p>Don't have an account? <a href="{% url 'signup' %}">Register here</a> or <a href="{% url 'home' %}">Home</a></p>
+
+  				</form>
+
+  			</div>
+  		</div>
+
+  	</div>
+
+  </section>
 
 
-  </form>
-
-			</div>
-		</div>
-	</div>
 
 
-<div id="particles-js">
-</div>
 
-</body>
-<!-- scripts -->
-<script type="text/javascript" src="{% static 'js/particles.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 </html>
