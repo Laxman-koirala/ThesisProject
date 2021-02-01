@@ -1,0 +1,27 @@
+
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+<div class="blog-card spring-fever">
+  <div class="title-content">
+    <h3><a href="#">Estonian Entrepreneurship University</a></h3>
+    <div class="intro"> <a href="#">{{profiles.Faculty}}</a> </div>
+  </div>
+  <div class="card-info">
+    {{profiles.bio}}
+  </div>
+  <div class="utility-info">
+    <ul class="utility-list">
+     <!-- <li><span class="licon icon-like"></span><a href="#">2</a></li>
+      <li><span class="licon icon-com"></span><a href="#">12</a></li>
+      -->
+      <li><span class="licon icon-dat"></span>{{profiles.created}}</li>
+      <li><span class="licon icon-tag"></span><a href="#">Photo</a>, <a href="#">{{profiles.user.username}}</a></li>
+    </ul>
+  </div>
+  <div class="gradient-overlay"></div>
+  <div class="color-overlay"></div>
+</div><!-- /.blog-card -->
+
+
+  {% endblock %}

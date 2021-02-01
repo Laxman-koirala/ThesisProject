@@ -1,4 +1,6 @@
 {% load static %}
+
+
 <html lang="en">
 
 <head>
@@ -10,6 +12,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
   <title>
 
   </title>
@@ -17,107 +20,49 @@
   <link rel="shortcut icon" type="image/jpg" href="{% static 'images/Logo.png' %}"/>
   <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
   <link rel="stylesheet" type="text/css"  href="{% static 'css/style1.css' %}">
+  <link rel="stylesheet" type="text/css"  href="{% static 'css/style2.css' %}">
+  <style>
 
-    <style>
-
-
-
-.box2{
-
-background:#ffe6e6;
-overflow-y: scroll;
-
-}
-.box3{
-background: url(https://images.unsplash.com/photo-1544306094-e2dcf9479da3) no-repeat;
-overflow-y: scroll;
-
-}
-
-main{
-height:100vh;
-display:grid;
-grid-template-columns:1fr 1.6fr 1fr;
+.formbox{
+padding: 10px 30px 50px 30px;
 
 
 }
 
-.outer{
-  position: relative;
-  margin: 0 50px;
 
-}
-.button{
-  height: 70px;
-  width: 220px;
-  border-radius: 50px;
-}
-
-.outer button, .outer span{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.outer button{
-  background: #800000;
-  color: #f2f2f2;
-  outline: none;
-  border: none;
-  font-size: 20px;
-  z-index: 9;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.button button{
-  height: 60px;
-  width: 210px;
-  border-radius: 50px;
-}
-
-.outer span{
-  height: 100%;
+#id_title{
+height: 80px;
   width: 100%;
-  background: inherit;
-}
-.button span{
-  border-radius: 50px;
+  margin-top: 20px;
+  position: relative;
 }
 
-.outer:hover span:nth-child(1){
-  filter: blur(7px);
+#id_overview{
+height: 200px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+
+
+
 }
-.outer:hover span:nth-child(2){
-  filter: blur(14px);
-}
-.outer:hover{
-  background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
-  animation: rotate 1.5s linear infinite;
-}
-@keyframes rotate {
-  0%{
-    filter: hue-rotate(0deg);
-  }
-  100%{
-    filter: hue-rotate(360deg);
-  }
-}
-@media (max-width: 640px){
-  .outer{
-    margin: 50px 0;
-  }
+
+#id_thumbnail{
+
+  margin-top: 20px;
+  position: relative;
+
 }
 
 
 
-    </style>
+  </style>
 
 </head>
 
-<body style="overflow: hidden;">
+<body>
   <nav class="navbar navbar-expand-lg navbar- static-top" style='background-color:#00001a'>
-    <div class="container">
+    <div class="container" >
       <div class="navbar-brand">
                       <img  style="background-color:" src="{% static 'images/Logo.png' %}" width="300" height="70" class="d-inline-block align-top">
                     </div>
@@ -131,10 +76,17 @@ grid-template-columns:1fr 1.6fr 1fr;
           </li>
 
 
-          <li><a href="{% url 'createpost' %}" class="nav-link text-left" style="font-size:20px;color:red">Create a post</a>
+          <li><a href="{% url 'createpost' %}" class="nav-link text-left" style="font-size:20px;color:red">Post</a>
           </li>
+          <li><a href="{% url 'profile' %}" class="nav-link text-left" style="font-size:20px;color:red">Profile</a>
+          </li>
+          <li><a href="{% url 'users' %}" class="nav-link text-left" style="font-size:20px;color:red">People</a>
+          </li>
+
           <li>
             <a href="{% url 'visual' %}" class="nav-link text-left" style="font-size:20px;color:red">Visualization</a>
+          </li>
+          <li><a href="#" class="nav-link text-left" style="font-size:20px;color:red">Settings</a>
           </li>
           <li><a href="{% url 'logout' %}" class="nav-link text-left" style="font-size:20px;color:red">Logout</a></li>
         </ul>
@@ -263,15 +215,10 @@ grid-template-columns:1fr 1.6fr 1fr;
 </script>
 <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-
-<!-- scripts -->
-<script type="text/javascript" src="{% static 'js/particles.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
 

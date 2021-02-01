@@ -9,6 +9,7 @@ class Profile(models.Model):
     following = models.ManyToManyField(User,related_name='following',blank = True)
     bio = models.TextField(default='no bio submitted..')
     joinyear = models.TextField(default='2021')
+    Faculty = models.TextField(default='Game Design and Development')
     photo = models.ImageField(upload_to= 'Profile_pic',null = True, blank = True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)

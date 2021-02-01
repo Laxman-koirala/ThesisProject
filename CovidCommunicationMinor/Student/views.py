@@ -40,6 +40,8 @@ class CreatePost(CreateView):
         form.instance.Author = user
         return super(CreatePost, self).form_valid(form)
 
+
+
 @login_required
 def Visualization(request):
     countryNameSe = request.POST.get('country')
@@ -88,4 +90,27 @@ def Visualization(request):
 
     }
     return render(request, 'visualization.html', context)
+
+def Myprofile(request):
+    me = Profile.objects.get(user=request.user)
+    context = {
+        'u': me,
+
+    }
+
+    return render(request, 'profile.html', context)
+
+class ProfileList(ListView):
+    model = Profile
+    template_name = 'people.html'
+    context_object_name = 'profiles'
+
+    def get_queryset(self):
+        return Profile.objects.all().exclude(user=self.request.user)
+
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'userprofile.html'
+    context_object_name = 'profiles'
+
 

@@ -2,48 +2,11 @@
 {% extends 'Base.html' %}
 {% load static %}
 {% block content %}
-<main>
-
-    <div id="particles-js">
-    <div class = 'box1'>
-      <div class="outer button" >
-
-        <div class="wrapper">
-    <div class="img-area">
-      <div class="inner-area">
-        {% if profile.photo %}
-      <img src="{{profile.photo.url}}"alt="" >
-  {% else %}
-      <img src="{% static 'images/default.png' %}"alt="" >
-  {% endif %}
-      </div>
-    </div>
-    <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
-    <div class="name">{{u.user.username}}</div>
-    <div class="about">{{u.bio}}</div>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/" class="fb"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
-    </div>
-
-</div>
-
-  </div>
 
 
-      </div>
-
-      </div>
-
-
-
-
-    <div class = 'box2'>
-        {% for trends in posts %}
-
-<div class="container" style="background-color:#330000">
+<!--
+{% for trends in posts %}
+<div class="container" style="background-color:#330000;">
 
   <div class="col-lg-10" style="margin-left: auto;
   margin-right: auto;
@@ -51,18 +14,22 @@
   border-radius: 25px;
   border: 2px solid #73AD21;">
     <div class="section-title">
-      <h2 style="font-size:20px;color:#ff9999">#Author: {{trends.Author.user.username}} </h2>
+      <a href="#" style="font-size:20px;color:#ff9999">#Author: {{trends.Author.user.username}} </a>
     </div>
     <div class="trend-entry d-flex" >
 
       <div class="trend-contents">
         <a href="#" style="font-size:20px;color:#FF69B4; font-family: 'Lucida Console', Courier, monospace;">{{trends.title}}</a>
-        <a href="#"><img src="{{trends.thumbnail.url}}" width="1000" height="400" style="display: block;
+        {% if trends.thumbnail %}
+         <a href="#"><img src="{{trends.thumbnail.url}}"  style="display: block;
+
+
   margin-left: auto;
   margin-right: auto;
   height:auto;
     width:100;
     max-width:400px;" alt="Image"></a>
+        {% endif %}
         <div class="" style='font-size:20px;color:#DCDCDC;'>
           {{trends.overview}}
 
@@ -85,56 +52,32 @@
   </div>
 </div>
 
+
 {% endfor %}
-        <br><br><br><br><br>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-    <div class = 'box3'>
-        {% for profile in profiles %}
-      <div class="outer button">
-          <div class="wrapper">
-    <div class="img-area">
-      <div class="inner-area">
-          {% if profile.photo %}
-      <img src="{{profile.photo.url}}"alt="" >
-  {% else %}
-      <img src="{% static 'images/default.png' %}"alt="" >
-  {% endif %}
-
-      </div>
-    </div>
-    <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
-    <div class="name">{{profile.user.username}}</div>
-    <div class="about">{{profile.bio}}</div>
-            <div class="about">{{profile.joinyear}}</div>
-    <div class="social-icons">
-      <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
+-->
+{% for trends in posts %}
+<div class="container">
+<div class="jumbotron">
+  <p class="display-6"style="font-size:20px" >Author: {{trends.Author.user.username}}</p>
+  <h1 class="display-5">{{trends.title}}</h1>
+  <hr class="my-4">
+  <p>{{trends.overview}}</p>
+  <p class="lead">
+    <a class="btn btn-info btn-lg" href="#" role="button">Mark as read</a>
+  </p>
+  <div class="row justify-content-center">
+  <p style="">
+    {{trends.time_upload}} [{{trends.time_upload|timesince}} ago]
+  </p>
     </div>
 
 </div>
-
-      </div>
-        <br> <br><br><br><br><br><br><br><br>
-          {% endfor %}
-        </div>
+</div>
+<hr>
+{% endfor %}
 
 
-   </main>
+
 
 
 {% endblock %}
