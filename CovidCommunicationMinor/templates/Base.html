@@ -54,6 +54,31 @@ height: 200px;
 
 }
 
+#id_old_password{
+height: 60px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+
+}
+#id_new_password1{
+height: 60px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+
+}
+#id_new_password2{
+
+height: 60px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+
+}
+
+
+
 
 
   </style>
@@ -78,22 +103,25 @@ height: 200px;
 
           <li><a href="{% url 'createpost' %}" class="nav-link text-left" style="font-size:20px;color:red">Post</a>
           </li>
-          <li><a href="{% url 'profile' %}" class="nav-link text-left" style="font-size:20px;color:red">Profile</a>
-          </li>
           <li><a href="{% url 'users' %}" class="nav-link text-left" style="font-size:20px;color:red">People</a>
           </li>
 
           <li>
             <a href="{% url 'visual' %}" class="nav-link text-left" style="font-size:20px;color:red">Visualization</a>
           </li>
-          <li><a href="#" class="nav-link text-left" style="font-size:20px;color:red">Settings</a>
+           <li>
+            <a href="{% url 'profile' %}" class="nav-link text-left" style="font-size:20px;color:red">Profile</a>
           </li>
-          <li><a href="{% url 'logout' %}" class="nav-link text-left" style="font-size:20px;color:red">Logout</a></li>
+           <li>
+            <a href="{% url 'changepassword' %}" class="nav-link text-left" style="font-size:20px;color:red">Pwd</a>
+          </li>
+
+
         </ul>
 
       </div>
 
-      <form action="#" class="form-inline my-2 my-lg-0" method = 'get'>
+      <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0" method = 'get'>
 
 
         <input class="form-control mr-sm-2" type="search" name ="find" placeholder="Curious??" aria-label="Search">
@@ -102,6 +130,10 @@ height: 200px;
 
       </form>
     </div>
+    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">
+      <a href="{% url 'logout' %}" class="nav-link text-left" style="font-size:20px;color:red">Logout</a>
+    </button>
+
   </nav>
   {% block content %}
 

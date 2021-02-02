@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <h2 href="#" style="font-size:20px;color:#FF69B4; font-family: 'Lucida Console', Courier, monospace;">{{title}}</h2>
+
+</div>
+
+{% for trends in posts %}
+<div class="container">
+<div class="jumbotron">
+  <p class="display-6"style="font-size:20px" >Author: {{trends.Author.user.username}}</p>
+  <h1 class="display-5">{{trends.title}}</h1>
+  <hr class="my-4">
+  <p>{{trends.overview}}</p>
+  <p class="lead">
+    <a class="btn btn-info btn-lg" href="#" role="button">Mark as read</a>
+  </p>
+  <div class="row justify-content-center">
+  <p style="">
+    {{trends.time_upload}} [{{trends.time_upload|timesince}} ago]
+  </p>
+    </div>
+
+</div>
+</div>
+<hr>
+{% endfor %}
+
+
+
+{% endblock %}

@@ -9,5 +9,6 @@ urlpatterns = [
     path('visualization/',views.Visualization, name='visual'),
     path('<int:pk>', views.ProfileDetailView.as_view(), name='profile-detail'),
     path('profile/', views.Myprofile, name='profile'),
+    path('search/', views.search, name='search'),
 
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -55,8 +55,9 @@ def Change_Password(request):
         fm = PasswordChangeForm(user=request.user, data=request.POST)
         if fm.is_valid():
             fm.save()
+            update_session_auth_hash(request,fm.user)
             return HttpResponseRedirect('/postlist/')
     else:
         fm = PasswordChangeForm(user=request.user)
-    return render(request, 'Base.html', {'form': fm})
+    return render(request, 'changepwd.html', {'form': fm})
 

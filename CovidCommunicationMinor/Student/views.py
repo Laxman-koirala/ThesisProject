@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from .models import Post
@@ -12,7 +11,12 @@ from django.utils.decorators import method_decorator
 import pandas as pd
 
 def Home(request):
-    return render(request, 'Home.html')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/postlist/')
+    else:
+        return render(request, 'Home.html')
+
+
 
 @login_required
 def ProfileListView(request):
@@ -91,6 +95,8 @@ def Visualization(request):
     }
     return render(request, 'visualization.html', context)
 
+
+@login_required
 def Myprofile(request):
     me = Profile.objects.get(user=request.user)
     context = {
@@ -100,6 +106,7 @@ def Myprofile(request):
 
     return render(request, 'profile.html', context)
 
+@method_decorator(login_required, name='dispatch')
 class ProfileList(ListView):
     model = Profile
     template_name = 'people.html'
@@ -108,9 +115,25 @@ class ProfileList(ListView):
     def get_queryset(self):
         return Profile.objects.all().exclude(user=self.request.user)
 
+@method_decorator(login_required, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'userprofile.html'
     context_object_name = 'profiles'
+
+@login_required
+def search(request):
+    searchfor = request.GET.get('find')
+    posts = Post.objects.filter(
+        Q(title__icontains = searchfor) |
+        Q(overview__icontains = searchfor) |
+        Q(Author__user__username__icontains = searchfor)
+
+        ).distinct()
+    contex = {
+    'posts':posts,
+    'title':f'Searching result for {searchfor}'
+    }
+    return render(request,'search.html',contex)
 
 
