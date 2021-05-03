@@ -93,7 +93,7 @@ def Visualization(request):
         'y': y
 
     }
-    return render(request, 'visualization.html', context)
+    return render(request, 'Visualization.html', context)
 
 
 @login_required
